@@ -125,18 +125,18 @@ function setupCallEventHandlers(call){
     });
 }
 
-function addVideo(stream){
-    const videoDom = $('<video autoplay>');
-    videoDom.attr('id',stream.peerId);
-    videoDom.get(0).srcObject = stream;
-    $('.videosContainer').append(videoDom);
-}
+// function addVideo(stream){
+//     const videoDom = $('<video autoplay>');
+//     videoDom.attr('id',stream.peerId);
+//     videoDom.get(0).srcObject = stream;
+//     $('.videosContainer').append(videoDom);
+// }
 
 //function removeAllRemoteVideos(){
 //    $('.videosContainer').empty();
 // }
 
-function hoge_addVideo(call,stream){
+function addVideo(call,stream){
     $('#their-video').get(0).srcObject = stream;
 }
 
