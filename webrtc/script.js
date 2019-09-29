@@ -132,9 +132,9 @@ function addVideo(stream){
     $('.videosContainer').append(videoDom);
 }
 
-function removeAllRemoteVideos(){
-    $('.videosContainer').empty();
-}
+//function removeAllRemoteVideos(){
+//    $('.videosContainer').empty();
+// }
 
 function hoge_addVideo(call,stream){
     $('#their-video').get(0).srcObject = stream;
