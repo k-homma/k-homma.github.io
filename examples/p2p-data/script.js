@@ -17,7 +17,8 @@ const Peer = window.Peer;
   `.trim();
 
   const peer = (window.peer = new Peer({
-    key: window.__SKYWAY_KEY__,
+     // key: window.__SKYWAY_KEY__,
+    key: 36d58092-aaa0-466d-8fa6-1ae3fbd0e57e
     debug: 3,
   }));
 
