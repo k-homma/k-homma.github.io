@@ -6,14 +6,15 @@ let existingCall = null;
 
 // multi part ///////////
 let constraints = {
-    video: {},
+//    video: {},
+    video: true,
     audio: true
 };
-constraints.video.width = {
+constraints1.video1.width = {
     min: 320,
     max: 320
 };
-constraints.video.height = {
+constraints1.video1.height = {
     min: 240,
     max: 240        
 };
