@@ -21,7 +21,8 @@ constraints.video.height = {
 ///////////////////////////
 
 
-navigator.mediaDevices.getUserMedia({video: true, audio: true})
+// navigator.mediaDevices.getUserMedia({video: true, audio: true})
+navigator.mediaDevices.getUserMedia(constraints)
     .then(function (stream) {
         // Success
 	$('#myStream').get(0).srcObject = stream;
