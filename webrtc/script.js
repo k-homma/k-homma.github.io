@@ -25,8 +25,8 @@ constraints.video.height = {
 navigator.mediaDevices.getUserMedia(constraints)
     .then(function (stream) {
         // Success
-	$('#myStream').get(0).srcObject = stream;
-        // $('#my-video').get(0).srcObject = stream;
+	//	$('#myStream').get(0).srcObject = stream;
+        $('#my-video').get(0).srcObject = stream;
         localStream = stream;
     }).catch(function (error) {
 	// Error
@@ -59,14 +59,16 @@ $('#make-call').submit(function(e){
     // Enter the room name to join instead of the peer ID of
     // the connection destination, specify the room name as an argument,
     // and execute the peer.joinRoom method.
-    let roomName = $('#join-room').val();
-    if (!roomName) {
-        return;
-    }
-    // mode can be selected from sfu and mesh.
-    const call = peer.joinRoom(roomName, {mode: 'sfu', stream: localStream})
-    // const call = peer.call($('#callto-id').val(), localStream);
+
+    // let roomName = $('#join-room').val();
+    // if (!roomName) {
+    //     return;
+    // }
     
+    // mode can be selected from sfu and mesh.
+    // const call = peer.joinRoom(roomName, {mode: 'sfu', stream: localStream})
+
+    const call = peer.call($('#callto-id').val(), localStream);
     setupCallEventHandlers(call);
 });
 
@@ -89,35 +91,35 @@ function setupCallEventHandlers(call){
     // add (multi) ///
     // When using the Room function,
     // communication starts when you join the Room.
-    setupEndCallUI();
-    $('#room-id').text(call.name);
+    //    setupEndCallUI();
+    //    $('#room-id').text(call.name);
 
     // When the room function is used,
     // PeerID is stored in the Stream object,
     // so the Call object specified as
     // the first argument of addVideo can be omitted.
-    call.on('stream', function(stream){
-        addVideo(stream);
-    });
+    //    call.on('stream', function(stream){
+    //       addVideo(stream);
+    //    });
 
     // Since the peer ID of the missing participant can be acquired,
     // the corresponding VIDEO element is deleted using that ID.
-    call.on('peerLeave', function(peerId){
-        removeVideo(peerId);
-    });
+    //    call.on('peerLeave', function(peerId){
+    //       removeVideo(peerId);
+    //    });
     /////////////////
 
     // When 1:1, the processing that was inside
     // the Stream event is taken out.    
-    // call.on('stream', function(stream){
-    //     addVideo(call,stream);
-    //     setupEndCallUI();
-    //     $('#their-id').text(call.remoteId);
-    // });
-
+    call.on('stream', function(stream){
+        addVideo(call,stream);
+        setupEndCallUI();
+        $('#their-id').text(call.remoteId);
+    });
+    
     call.on('close', function(){
-	removeAllRemoteVideos();
-	//removeVideo(call.remoteId);
+	//removeAllRemoteVideos();
+	removeVideo(call.remoteId);
         setupMakeCallUI();
     });
 }
