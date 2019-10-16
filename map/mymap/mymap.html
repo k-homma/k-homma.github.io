@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<title>jaist map</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="../src/leaflet.css" />
+<script src="../src/leaflet.js"></script>
+<!-- <script src="https://cdn-webgl.eegeo.com/eegeojs/early_access/latest/eegeo.js"></script> -->
+<!-- <script src="../src/leaflet.ajax.js"></script> -->
+<script src = "//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.3.1/leaflet-omnivore.min.js"></script>
+<!-- <script src="../src/leaflet-pulse-icon-plugin/L.Icon.Pulse.js" /> -->
+<!-- <link rel="stylesheet" href="../src/leaflet-pulse-icon-plugin/L.Icon.Pulse.css" /> -->
+
+<style type="text/css">
+<!--
+div#mymap {width: 90vw; height: 60vh; margin: 0 auto;}
+div#mymap {border: 5px inset blue;}
+#map-canvas{width: 100px ; height: 0px ;}
+-->
+</style>
+</head>
+
+<body>
+<h1>jaist GO</h1>
+<p>スタンプを集めろい。</p>
+<p id= "info">Find jaist stamp</p>
+<div id ="time"></div>
+<div id ="countdown"></div>
+<button type="button" id ="str">現在地取得</button>
+<button type="button" id="stp">現在地取得を取消</button>
+<button type="button" id="clr">データを clear</button>
+<p id="serif"></p>
+<div id="mymap"></div>
+<div id = "map-canvas"></div>
+<script type="text/javascript" src="mymap_hoge.js" charset="utf-8"></script>
+</body>
+</html>
