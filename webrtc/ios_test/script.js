@@ -4,13 +4,13 @@ let localStream = null;
 let peer = null;
 let existingCall = null;
 
-var peer: SKWPeer? //Peerオブジェクト
-var remoteStream: SKWMediaStream? //相手のMediaStreamオブジェクト
-var localStream: SKWMediaStream? //自分自身のMediaStreamオブジェクト
-var mediaConnection: SKWMediaConnection? //MediaConnectionオブジェクト
+// var peer: SKWPeer? //Peerオブジェクト
+// var remoteStream: SKWMediaStream? //相手のMediaStreamオブジェクト
+// var localStream: SKWMediaStream? //自分自身のMediaStreamオブジェクト
+// var mediaConnection: SKWMediaConnection? //MediaConnectionオブジェクト
 
 
-let option: SKWPeerOption = SKWPeerOption.init()
+// let option: SKWPeerOption = SKWPeerOption.init()
 
 
 
