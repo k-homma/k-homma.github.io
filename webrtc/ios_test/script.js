@@ -19,11 +19,22 @@ navigator.mediaDevices.getUserMedia({video: true, audio: true})
         // Success
         $('#my-video').get(0).srcObject = stream;
         localStream = stream;
+	$("#result_use").html( cameraData[cnt].id );
+	
+	//カメラをvideoに結びつける
+        video.src = window.URL.createObjectURL(stream);
+	
+	//カメラ切り替えボタンクリックイベント
+	$("#changeButton").bind("click",function(){
+            setCamera();
+	});
+	
     }).catch(function (error) {
-    // Error
-    console.error('mediaDevice.getUserMedia() error:', error);
-    return;
-});
+	// Error
+	console.error('mediaDevice.getUserMedia() error:', error);
+	return;
+    });
+
 
 peer = new Peer({
     key: '36d58092-aaa0-466d-8fa6-1ae3fbd0e57e',
