@@ -12,6 +12,13 @@ let existingCall = null;
 
 // let option: SKWPeerOption = SKWPeerOption.init()
 
+const videoElement = document.querySelector('video');
+const audioInputSelect = document.querySelector('select#audioSource');
+const audioOutputSelect = document.querySelector('select#audioOutput');
+const videoSelect = document.querySelector('select#videoSource');
+const selectors = [audioInputSelect, audioOutputSelect, videoSelect];
+
+audioOutputSelect.disabled = !('sinkId' in HTMLMediaElement.prototype);
 
 
 navigator.mediaDevices.getUserMedia({video: true, audio: true})
@@ -24,7 +31,7 @@ navigator.mediaDevices.getUserMedia({video: true, audio: true})
 	//カメラをvideoに結びつける
         video.src = window.URL.createObjectURL(stream);
 	
-	//カメラ切り替えボタンクリックイベント
+	//カメラ切り替えボタン
 	$("#changeButton").bind("click",function(){
             setCamera();
 	});
@@ -34,7 +41,7 @@ navigator.mediaDevices.getUserMedia({video: true, audio: true})
 	console.error('mediaDevice.getUserMedia() error:', error);
 	return;
     });
-
+});
 
 peer = new Peer({
     key: '36d58092-aaa0-466d-8fa6-1ae3fbd0e57e',
@@ -55,6 +62,8 @@ peer.on('close', function(){
 peer.on('disconnected', function(){
 });
 
+
+
 $('#make-call').submit(function(e){
     e.preventDefault();
     const call = peer.call($('#callto-id').val(), localStream);
@@ -69,6 +78,9 @@ peer.on('call', function(call){
     call.answer(localStream);
     setupCallEventHandlers(call);
 });
+
+
+
 
 function setupCallEventHandlers(call){
     if (existingCall) {
@@ -88,6 +100,8 @@ function setupCallEventHandlers(call){
     });
 }
 
+
+
 function addVideo(call,stream){
     $('#their-video').get(0).srcObject = stream;
 }
@@ -101,7 +115,32 @@ function setupMakeCallUI(){
     $('#end-call').hide();
 }
 
+
+function start() {
+  if (window.stream) {
+    window.stream.getTracks().forEach(track => {
+      track.stop();
+    });
+  }
+  const audioSource = audioInputSelect.value;
+  const videoSource = videoSelect.value;
+  const constraints = {
+    audio: {deviceId: audioSource ? {exact: audioSource} : undefined},
+    video: {deviceId: videoSource ? {exact: videoSource} : undefined}
+  };
+  navigator.mediaDevices.getUserMedia(constraints).then(gotStream).then(gotDevices).catch(handleError);
+}
+
+audioInputSelect.onchange = start;
+audioOutputSelect.onchange = changeAudioDestination;
+
+videoSelect.onchange = start;
+
+
 function setupEndCallUI() {
     $('#make-call').hide();
     $('#end-call').show();
 }
+
+
+start();
