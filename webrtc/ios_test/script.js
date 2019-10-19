@@ -52,7 +52,7 @@ navigator.mediaDevices.getUserMedia({video: true, audio: true})
 	// Error
 	console.error('mediaDevice.getUserMedia() error:', error);
 	return;
-    })
+    });
 
 // //カメラ切り替えボタンイベント
 // $("#changeButton").bind("click",function(){
