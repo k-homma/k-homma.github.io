@@ -54,10 +54,10 @@ navigator.mediaDevices.getUserMedia({video: true, audio: true})
 	return;
     })
 
-//カメラ切り替えボタンイベント
-$("#changeButton").bind("click",function(){
-    setCamera();
-});
+// //カメラ切り替えボタンイベント
+// $("#changeButton").bind("click",function(){
+//     setCamera();
+// });
 
 
 peer = new Peer({
@@ -99,7 +99,7 @@ peer.on('call', function(call){
 
 
 
-function setupCallEventHandlers(call){
+function; setupCallEventHandlers(call){
     if (existingCall) {
         existingCall.close();
     };
