@@ -40,8 +40,8 @@ navigator.mediaDevices.getUserMedia({video: true, audio: true})
 	// Error
 	console.error('mediaDevice.getUserMedia() error:', error);
 	return;
-    });
-});
+    })
+
 
 peer = new Peer({
     key: '36d58092-aaa0-466d-8fa6-1ae3fbd0e57e',
