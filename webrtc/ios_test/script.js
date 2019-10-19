@@ -21,6 +21,8 @@ const selectors = [audioInputSelect, audioOutputSelect, videoSelect];
 // audioOutputSelect.disabled = !('sinkId' in HTMLMediaElement.prototype);
 
 
+var cameraData = [];
+
 navigator.mediaDevices.getUserMedia({video: true, audio: true})
     .then(function (stream) {
         // Success
@@ -30,8 +32,18 @@ navigator.mediaDevices.getUserMedia({video: true, audio: true})
 	
 	//カメラをvideoに結びつける
         video.src = window.URL.createObjectURL(stream);
+
+
+	// //カメラを取得・切り替える
+	// var cnt = 0;
+	// function setCamera(){
+	//     //カメラを順番に切り替える
+        //     cnt++;
+        //     if( cnt == cameraData.length ){
+	// 	cnt = 0;
+        //     }
 	
-	//カメラ切り替えボタン
+	//カメラ切り替えボタンイベント
 	$("#changeButton").bind("click",function(){
             setCamera();
 	});
@@ -41,6 +53,11 @@ navigator.mediaDevices.getUserMedia({video: true, audio: true})
 	console.error('mediaDevice.getUserMedia() error:', error);
 	return;
     })
+
+//カメラ切り替えボタンイベント
+$("#changeButton").bind("click",function(){
+    setCamera();
+});
 
 
 peer = new Peer({
@@ -116,25 +133,25 @@ function setupMakeCallUI(){
 }
 
 
-function start() {
-  if (window.stream) {
-    window.stream.getTracks().forEach(track => {
-      track.stop();
-    });
-  }
-  const audioSource = audioInputSelect.value;
-  const videoSource = videoSelect.value;
-  const constraints = {
-    audio: {deviceId: audioSource ? {exact: audioSource} : undefined},
-    video: {deviceId: videoSource ? {exact: videoSource} : undefined}
-  };
-  navigator.mediaDevices.getUserMedia(constraints).then(gotStream).then(gotDevices).catch(handleError);
-}
+// function start() {
+//   if (window.stream) {
+//     window.stream.getTracks().forEach(track => {
+//       track.stop();
+//     });
+//   }
+//   const audioSource = audioInputSelect.value;
+//   const videoSource = videoSelect.value;
+//   const constraints = {
+//     audio: {deviceId: audioSource ? {exact: audioSource} : undefined},
+//     video: {deviceId: videoSource ? {exact: videoSource} : undefined}
+//   };
+//   navigator.mediaDevices.getUserMedia(constraints).then(gotStream).then(gotDevices).catch(handleError);
+// }
 
-audioInputSelect.onchange = start;
-audioOutputSelect.onchange = changeAudioDestination;
+// audioInputSelect.onchange = start;
+// audioOutputSelect.onchange = changeAudioDestination;
 
-videoSelect.onchange = start;
+// videoSelect.onchange = start;
 
 
 function setupEndCallUI() {
@@ -143,4 +160,4 @@ function setupEndCallUI() {
 }
 
 
-start();
+//start();
