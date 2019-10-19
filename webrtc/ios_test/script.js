@@ -28,11 +28,10 @@ navigator.mediaDevices.getUserMedia({video: true, audio: true})
         // Success
         $('#my-video').get(0).srcObject = stream;
         localStream = stream;
-	$("#result_use").html( cameraData[cnt].id );
+	//	$("#result_use").html( cameraData[cnt].id );
 	
 	//カメラをvideoに結びつける
-        video.src = window.URL.createObjectURL(stream);
-	
+	video.src = window.URL.createObjectURL(stream);
 	
 	// //カメラを取得・切り替える
 	// var cnt = 0;
@@ -43,19 +42,15 @@ navigator.mediaDevices.getUserMedia({video: true, audio: true})
 	// 	cnt = 0;
         //     }
 	
-	//カメラ切り替えボタンイベント
-
-	// $("#changeButton").bind("click",function(){
-        //     setCamera();
-	// });
+	カメラ切り替えボタンイベント
+	$("#changeButton").bind("click",function(){
+            setCamera();
+	});
 	
     }).catch(function (error) {
 	// Error
 	console.error('mediaDevice.getUserMedia() error:', error);
 	return;
-	$("#changeButton").bind("click",function(){
-            setCamera();
-	});
     });
 
 // //カメラ切り替えボタンイベント
