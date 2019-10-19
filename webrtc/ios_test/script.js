@@ -32,8 +32,8 @@ navigator.mediaDevices.getUserMedia({video: true, audio: true})
 	
 	//カメラをvideoに結びつける
         video.src = window.URL.createObjectURL(stream);
-
-
+	
+	
 	// //カメラを取得・切り替える
 	// var cnt = 0;
 	// function setCamera(){
@@ -44,14 +44,18 @@ navigator.mediaDevices.getUserMedia({video: true, audio: true})
         //     }
 	
 	//カメラ切り替えボタンイベント
-	$("#changeButton").bind("click",function(){
-            setCamera();
-	});
+
+	// $("#changeButton").bind("click",function(){
+        //     setCamera();
+	// });
 	
     }).catch(function (error) {
 	// Error
 	console.error('mediaDevice.getUserMedia() error:', error);
 	return;
+	$("#changeButton").bind("click",function(){
+            setCamera();
+	});
     });
 
 // //カメラ切り替えボタンイベント
